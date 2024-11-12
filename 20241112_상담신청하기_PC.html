@@ -1,0 +1,49 @@
+<!--
+  상담신청하기 PC 스크립트
+
+  제품 상세페이지에 상담신청하기 버튼 및 팝업 적용을 위한 스크립트입니다.
+  openSin 함수를 통해 상담신청하기 버튼 클릭 시 팝업이 열리도록 구현되어 있습니다.
+  openSin의 pathUrl 변수에 상담신청하기 팝업의 경로를 입력해주세요.
+
+  에디터에서 페이지 구성 후 html 모드 전환, 아래 스크립트를 복사하여 붙여넣기 해주세요.
+-->
+
+<style>
+  .item_price_cont {
+    display: none;
+  }
+  .btn_add_order {
+    display: none;
+  }
+  .sin {
+    border: solid 1px #000;
+    background: #380f93;
+    color: #fff;
+    padding: 20px;
+    margin: 0px 6px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .visitDiv,
+  .item_price,
+  .goods_qty {
+    display: none;
+  }
+</style>
+<script>
+  $(".btn_add_wish").after('<button class="sin" onclick="openConsultPopup(event)">상담 신청하기</button>');
+</script>
+<script>
+  function openConsultPopup(event) {
+    event.preventDefault();
+
+    var baseUrl = $('input[name="itemQaUrl"]').val();
+    var pathUrl = "/board/popup_goods_board_write.php?mode=write&orderGoodsNo=0&bdId=plandocsmd&goodsNo=1000012456";
+    var linkUrl = baseUrl + pathUrl;
+
+    window.open(linkUrl, "상담신청하기", "width=500,height=700");
+  }
+</script>
